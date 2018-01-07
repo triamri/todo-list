@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const cors = require('cors'); 
 const mongoose = require('mongoose');
 mongoose.connect(`mongodb://${process.env.USER_DB}:${process.env.PASSWORD_DB}@ds159776.mlab.com:59776/todos`);
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use('/api/', require('./routes/user'));
 app.use('/api/todos', require('./routes/todos'));

@@ -4,7 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 
+
 let getUser = (req, res) => {
+
     User.findOne({
         email : req.body.email
     })
@@ -44,8 +46,8 @@ let getUser = (req, res) => {
 
 let createUser = (req, res) => {
     const newUser = new User({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        first_name: req.body.first,
+        last_name: req.body.last,
         email: req.body.email,
         password: req.body.password
     });

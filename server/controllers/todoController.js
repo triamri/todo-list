@@ -68,7 +68,7 @@ let createTodo = (req, res) => {
 
 let updateTodo = (req, res) => {
     Todo.findOne({
-        _id: ObjectID(req.params.id),
+        _id: ObjectID(req.params.iddata),
         userID: req.simpanData.id
     })
     .then((result) => {
@@ -97,8 +97,11 @@ let updateTodo = (req, res) => {
 }
 
 let markTodo = (req, res) => {
+
+    // console.log(req.params.iddata.title);
+
     Todo.findOne({
-        _id: ObjectID(req.params.id),
+        _id: ObjectID(req.params.iddata),
         userID: req.simpanData.id
     })
     .then((result) => {
@@ -108,7 +111,7 @@ let markTodo = (req, res) => {
             })
         }
 
-        result.action = req.body.action || req.body.action
+        result.action = 'completed';
 
         result.save();
         res.status(200).json({
@@ -123,7 +126,7 @@ let markTodo = (req, res) => {
 
 let deleteTodo = (req, res) => {
     Todo.remove({
-        _id : ObjectID(req.params.id),
+        _id : ObjectID(req.params.iddata),
         userID: req.simpanData.id
     })
     .then((result) => {
